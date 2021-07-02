@@ -14,13 +14,17 @@
 
 <body>
     <?php
+    
+    //Databse connection
     include_once 'db.php';
+    
     $query = "SELECT * FROM countries WHERE status = 1 ORDER BY country_name ASC";
     $result = $db->query($query);
     ?>
     <div class="container">
         <a href="javaScript:void(0);" data-toggle="modal" data-target="#myModal" class="btn btn-primary pull-right bottom-gap">Add New <i class="fa fa-plus" aria-hidden="true"></i></a>
         <table class="table table-bordered">
+            <!--Data table Headingss -->
             <thead id="thead" style="background-color:#135361">
                 <tr>
                     <th>Sr.No</th>
@@ -32,7 +36,6 @@
                     <th>City</th>
                     <th>Courses</th>
                     <th>Action</th>
-
                 </tr>
             </thead>
             <tbody id="crudData">
@@ -67,20 +70,7 @@
                                     <input type="text" name="contact" id="contact" placeholder="Contact" class="form-control">
                                 </div>
                             </div>
-                            <!-- <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="picture">Picture <span class="field-required">*</span></label>
-                                    <input type="file" name="file" id="pic" placeholder="upload a picture" class="form-control">
-                                </div>
-                            </div> -->
-
-                            <!-- <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="country">Field (Fetching Json Data) <span class="field-required">*</span></label>
-                                <select id="locality-dropdown" name="locality" id="field" class="form-control">
-                                    <option value="AB">Alberta</option>
-                            </div>
-                        </div> -->
+                            
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="country">Country <span class="field-required">*</span></label>
@@ -160,26 +150,6 @@
 
     <div class="er"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- <script>
-        let dropdown = $('#locality-dropdown');
-
-        dropdown.empty();
-
-        dropdown.append('<option selected="true" disabled>Choose Field</option>');
-        dropdown.prop('selectedIndex', 0);
-
-        const url = 'sample-data.json';
-
-        // Populate dropdown with list of provinces
-        $.getJSON(url, function(data) {
-            $.each(data, function(key, entry) {
-                dropdown.append($('<option></option>').attr('value', entry.abbreviation).text(entry.name));
-            })
-        });
-    </script> -->
-
-
-
     <script>
         // dropDown
         $(document).ready(function() {
@@ -220,70 +190,7 @@
             });
         });
     </script>
-
-    <!-- <script type="text/javascript">
-  $(document).ready(function(){
-      $("#formSubmit").on("submit",function(e){
-          e.preventDefault();
-          var name = $("#name").val();
-          var course = [];
-          $(".form-check-input").each(function(){
-              if ($(this).is(":checked")) {
-                  course.push($(this).val());
-              }
-          });
-
-          course = course.toString(); // toString function convert array to string
-          
-          if (name !=="" && course.length > 0) {
-            $.ajax({
-              url : "insert.php",
-              type: "POST",
-              cache: false,
-              data : {name:name,course:course},
-              success:function(result){
-                if (result==1) {
-                    $("#formSubmit").trigger("reset");
-                    alert("Data insert in database successfully");
-                }
-              }
-            });
-          }else{
-            alert("Fill the required fields");
-          }
-      });
-  });
-</script> -->
-
-
-    <!-- <script>
-        // iMage
-        $("#pic").on("change", function(e) {
-            e.preventDefault();
-            var file_data = $('#pic').prop('files')[0];
-            var form_data = new FormData(); // Create a FormData object
-            form_data.append('file', file_data); // Append all element in FormData  object
-
-            $.post({
-                url: 'load.php', 
-                // point to server-side PHP script 
-                dataType: 'text', // what to expect back from the PHP script, if anything
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,
-                type: 'post',
-                success: function(output) {
-                    console.log(output);
-                    // $('img#img').attr('src', output);
-                    // display response from the PHP script, if any
-                }
-            });
-            $('#pic').val(); /* Clear the input type file */
-        });
-    </script> -->
-
-
+   
     <script src="crud-app.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
